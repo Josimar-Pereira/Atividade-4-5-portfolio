@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio | Dev, Cloud & Security</title>    
+    <title>Portfólio | Dev, Cloud & Security</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://viacep.com.br; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -30,22 +30,38 @@
     </section>
     <section id="contato" class="contact-section">
         <h2>Vamos conversar?</h2>
+        <p class="contact-subtitle">Preencha os dados abaixo detalhando sua necessidade e entrarei em contato.</p>
         <form id="contact-form">
             <input type="text" id="honeypot" name="honeypot" style="display:none" tabindex="-1" autocomplete="off">
-            <input type="text" id="nome" placeholder="Seu Nome" required>
-            <input type="email" id="email" placeholder="Seu Email" required>
-            <select id="servico" required>
-                <option value="" disabled selected>Qual a sua necessidade?</option>
-                <option value="dev">Desenvolvimento de Software</option>
-                <option value="cloud">Infraestrutura em Nuvem (AWS)</option>
-                <option value="sec">Segurança / Blue Team</option>
-                <option value="suporte">Suporte Técnico / Manutenção</option>
-            </select>
-            <div class="cep-group">
-                <input type="text" id="cep" placeholder="CEP (Apenas números)" maxlength="8" required>
-                <input type="text" id="cidade" placeholder="Localidade" disabled>
+            <div class="form-group">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" placeholder="Ex: João da Silva" required>
             </div>
-            <textarea id="mensagem" placeholder="Detalhe o seu projeto ou necessidade..." rows="4" required></textarea>
+            <div class="form-group">
+                <label for="email">E-mail Profissional</label>
+                <input type="email" id="email" placeholder="Ex: contato@empresa.com" required>
+            </div>
+            <div class="form-group">
+                <label for="servico">Qual a sua principal necessidade?</label>
+                <select id="servico" required>
+                    <option value="" disabled selected>Selecione uma opção...</option>
+                    <option value="dev">Desenvolvimento de Software</option>
+                    <option value="cloud">Infraestrutura em Nuvem (AWS)</option>
+                    <option value="sec">Segurança / Blue Team</option>
+                    <option value="suporte">Suporte Técnico / Manutenção</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cep">CEP de Atendimento</label>
+                <div class="cep-group">
+                    <input type="text" id="cep" placeholder="Apenas números" maxlength="8" required>
+                    <input type="text" id="cidade" placeholder="Aguardando CEP..." disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mensagem">Detalhes do Projeto</label>
+                <textarea id="mensagem" placeholder="Descreva o que você precisa, seus desafios atuais ou sua ideia de projeto..." rows="5" required></textarea>
+            </div>
             <button type="submit" class="btn-primary">Enviar Mensagem</button>
         </form>
     </section>
