@@ -147,3 +147,7 @@ input:disabled {
         flex-direction: column;
     }
 }
+
+#honeypot {
+    display: none !important;
+}
