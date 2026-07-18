@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Dev, Cloud & Security</title>    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://viacep.com.br; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="hero">
+        <h1>Soluções em Software, Nuvem e Segurança</h1>
+        <p>Desenvolvimento full-stack, arquitetura escalável e infraestrutura segura para o seu negócio.</p>
+        <button id="cta-button" class="btn-primary">Iniciar Projeto</button>
+    </header>
+    <section class="skills-section">
+        <div class="skill-card">
+            <h3>Desenvolvimento</h3>
+            <p>Aplicações modernas, responsivas e integradas com APIs RESTful utilizando as melhores práticas de código.</p>
+        </div>
+        <div class="skill-card">
+            <h3>Cloud Computing</h3>
+            <p>Provisionamento e gestão de infraestrutura em nuvem, garantindo alta disponibilidade e otimização de custos.</p>
+        </div>
+        <div class="skill-card">
+            <h3>Segurança Cibernética</h3>
+            <p>Foco na defesa de sistemas (Blue Team), análise de vulnerabilidades e arquiteturas seguras (Security by Design).</p>
+        </div>
+    </section>
+    <section id="contato" class="contact-section">
+        <h2>Vamos conversar?</h2>
+        <form id="contact-form">
+            <input type="text" id="honeypot" name="honeypot" style="display:none" tabindex="-1" autocomplete="off">
+            <input type="text" id="nome" placeholder="Seu Nome" required>
+            <input type="email" id="email" placeholder="Seu Email" required>
+            <select id="servico" required>
+                <option value="" disabled selected>Qual a sua necessidade?</option>
+                <option value="dev">Desenvolvimento de Software</option>
+                <option value="cloud">Infraestrutura em Nuvem (AWS)</option>
+                <option value="sec">Segurança / Blue Team</option>
+                <option value="suporte">Suporte Técnico / Manutenção</option>
+            </select>
+            <div class="cep-group">
+                <input type="text" id="cep" placeholder="CEP (Apenas números)" maxlength="8" required>
+                <input type="text" id="cidade" placeholder="Localidade" disabled>
+            </div>
+            <textarea id="mensagem" placeholder="Detalhe o seu projeto ou necessidade..." rows="4" required></textarea>
+            <button type="submit" class="btn-primary">Enviar Mensagem</button>
+        </form>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
