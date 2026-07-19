@@ -1,72 +1,75 @@
-const ctaButton = document.getElementById('cta-button');
-ctaButton.addEventListener('click', () => {
-    document.getElementById('contato').scrollIntoView({ behavior: 'smooth' });
-});
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const btnSaibaMais = document.getElementById('btn-saiba-mais');
+    const areaContato = document.getElementById('area-contato');
 
-const inputCep = document.getElementById('cep');
-const inputCidade = document.getElementById('cidade');
+    if (btnSaibaMais && areaContato) {
+        btnSaibaMais.addEventListener('click', () => {
+            areaContato.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
 
-inputCep.addEventListener('blur', async (event) => {
-    const cep = event.target.value.replace(/\D/g, '');
+    const cepInput = document.getElementById('cep');
+    const cidadeInput = document.getElementById('cidade');
+    const estadoInput = document.getElementById('estado');
 
-    if (cep.length === 8) {
-        inputCidade.value = "Buscando...";
+    cepInput.addEventListener('blur', async () => {
+        let cep = cepInput.value.replace(/\D/g, ''); 
         
-        try {
-            const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-            const dados = await resposta.json();
-
-            if (dados.erro) {
-                inputCidade.value = "CEP não encontrado";
-            } else {
-                inputCidade.value = `${dados.localidade} - ${dados.uf}`;
+        if (cep.length === 8) {
+            try {
+                const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await response.json();
+                
+                if (!data.erro) {
+                    cidadeInput.value = data.localidade;
+                    estadoInput.value = data.uf;
+                } else {
+                    alert("CEP não encontrado na base de dados.");
+                    cidadeInput.value = '';
+                    estadoInput.value = '';
+                }
+            } catch (error) {
+                alert("Erro de conexão ao buscar o CEP.");
             }
-        } catch (erro) {
-            inputCidade.value = "Erro na conexão";
-            console.error("Erro ao buscar o CEP:", erro);
         }
-    } else {
-        inputCidade.value = "";
-    }
-});
+    });
 
-function sanitizarInput(texto) {
-    const mapaCaracteres = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#x27;',
-        "/": '&#x2F;'
-    };
-    return texto.replace(/[&<>"'/]/ig, (match) => mapaCaracteres[match]);
-}
+    const form = document.getElementById('portfolio-form');
+    const feedback = document.getElementById('mensagem-feedback');
 
-document.getElementById('contact-form').addEventListener('submit', (e) => {
-    e.preventDefault();
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); 
 
-    const honeypot = document.getElementById('honeypot').value;
-    if (honeypot !== "") {
-        console.warn("Tentativa de spam bloqueada.");
-        return; 
-    }
+        const honeypot = document.getElementById('honeypot').value;
+        if (honeypot !== "") {
+            console.warn("Tentativa de spam bloqueada pelo Honeypot.");
+            return;
+        }
 
-    const dadosFormulario = {
-        nome: sanitizarInput(document.getElementById('nome').value),
-        email: sanitizarInput(document.getElementById('email').value),
-        servico: sanitizarInput(document.getElementById('servico').value),
-        cep: sanitizarInput(document.getElementById('cep').value),
-        cidade: sanitizarInput(document.getElementById('cidade').value),
-        mensagem: sanitizarInput(document.getElementById('mensagem').value)
-    };
+        const email = document.getElementById('email').value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!emailRegex.test(email)) {
+            feedback.textContent = "Por favor, insira um endereço de e-mail válido.";
+            feedback.className = "erro";
+            return;
+        }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(dadosFormulario.email)) {
-        alert("Por favor, insira um formato de email válido.");
-        return;
-    }
+        const formData = {
+            nome: document.getElementById('nome').value,
+            email: email,
+            cep: cepInput.value,
+            cidade: cidadeInput.value,
+            estado: estadoInput.value,
+            mensagem: document.getElementById('mensagem').value
+        };
 
-    console.log("Dados seguros prontos para envio:", dadosFormulario);
-    alert('Mensagem enviada com sucesso! Os dados foram validados e sanitizados no console.');
-    e.target.reset(); 
+        console.log("JSON pronto para envio ao Back-End:", JSON.stringify(formData));
+
+        feedback.textContent = "Obrigado! Sua mensagem foi recebida com sucesso.";
+        feedback.className = "sucesso";
+        
+        form.reset(); 
+    });
 });

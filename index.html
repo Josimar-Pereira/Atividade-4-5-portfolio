@@ -3,68 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio | Dev, Cloud & Security</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://viacep.com.br; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self' https://viacep.com.br;">
+    <title>Josimar - Portfólio Profissional</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="hero">
-        <h1>Soluções em Software, Nuvem e Segurança</h1>
-        <p>Desenvolvimento full-stack, arquitetura escalável e infraestrutura segura para o seu negócio.</p>
-        <button id="cta-button" class="btn-primary">Iniciar Projeto</button>
+    <header class="hero-section">
+        <h1>Josimar Bitencourt Pereira</h1>
+        <p>Estudante de TI | Focado em Infraestrutura Cloud (AWS) e Segurança</p>
+        <button id="btn-saiba-mais" class="cta-button">Saiba Mais</button>
     </header>
-    <section class="skills-section">
-        <div class="skill-card">
-            <h3>Desenvolvimento</h3>
-            <p>Aplicações modernas, responsivas e integradas com APIs RESTful utilizando as melhores práticas de código.</p>
-        </div>
-        <div class="skill-card">
-            <h3>Cloud Computing</h3>
-            <p>Provisionamento e gestão de infraestrutura em nuvem, garantindo alta disponibilidade e otimização de custos.</p>
-        </div>
-        <div class="skill-card">
-            <h3>Segurança Cibernética</h3>
-            <p>Foco na defesa de sistemas (Blue Team), análise de vulnerabilidades e arquiteturas seguras (Security by Design).</p>
-        </div>
-    </section>
-    <section id="contato" class="contact-section">
-        <h2>Vamos conversar?</h2>
-        <p class="contact-subtitle">Preencha os dados abaixo detalhando sua necessidade e entrarei em contato.</p>
-        <form id="contact-form">
-            <input type="text" id="honeypot" name="honeypot" tabindex="-1" autocomplete="off">
-            <div class="form-group">
-                <label for="nome">Nome Completo</label>
-                <input type="text" id="nome" placeholder="Ex: João da Silva" required>
-            </div>
-            <div class="form-group">
-                <label for="email">E-mail Profissional</label>
-                <input type="email" id="email" placeholder="Ex: contato@empresa.com" required>
-            </div>
-            <div class="form-group">
-                <label for="servico">Qual a sua principal necessidade?</label>
-                <select id="servico" required>
-                    <option value="" disabled selected>Selecione uma opção...</option>
-                    <option value="dev">Desenvolvimento de Software</option>
-                    <option value="cloud">Infraestrutura em Nuvem (AWS)</option>
-                    <option value="sec">Segurança / Blue Team</option>
-                    <option value="suporte">Suporte Técnico / Manutenção</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="cep">CEP de Atendimento</label>
-                <div class="cep-group">
-                    <input type="text" id="cep" placeholder="Apenas números" maxlength="8" required>
-                    <input type="text" id="cidade" placeholder="Aguardando CEP..." disabled>
+    <main>
+        <section id="area-contato" class="contact-section">
+            <h2>Entre em Contato</h2>
+            <form id="portfolio-form">   
+                <div class="honeypot-group">
+                    <label for="honeypot">Deixe este campo em branco</label>
+                    <input type="text" id="honeypot" name="honeypot" autocomplete="off">
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="mensagem">Detalhes do Projeto</label>
-                <textarea id="mensagem" placeholder="Descreva o que você precisa, seus desafios atuais ou sua ideia de projeto..." rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn-primary">Enviar Mensagem</button>
-        </form>
-    </section>
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep" maxlength="9" placeholder="Apenas números" required>
+                </div>
+                <div class="form-group">
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" id="cidade" name="cidade" readonly required>
+                </div>
+                <div class="form-group">
+                    <label for="estado">Estado (UF):</label>
+                    <input type="text" id="estado" name="estado" readonly required>
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+                </div>
+                <button type="submit" id="btn-enviar" class="submit-button">Enviar Mensagem</button>
+            </form>
+            <div id="mensagem-feedback"></div>
+        </section>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
